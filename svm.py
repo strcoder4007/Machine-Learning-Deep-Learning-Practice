@@ -75,7 +75,7 @@ def predict(self, features):
 	# sign(x.w + b)
 	classification = np.sign(np.dot(np.array(features), self.w) + self.b)
 	if classification != 0 and self.visualization:
-		self.ax.scatter(features[0], features[1], s=200, marker=*, c=self.colors[classification])
+		self.ax.scatter(features[0], features[1], s=200, marker='*', c=self.colors[classification])
 		### pt.28
 	return classification
 		
