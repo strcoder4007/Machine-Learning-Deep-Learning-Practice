@@ -1,7 +1,7 @@
 import matplotlib.pyplot as plt
 from matplotlib import style
 style.use('ggplot')
-from sklearn import preprocessing, cross_validation
+from sklearn import preprocessing
 import numpy as np
 import pandas as pd
 
@@ -72,14 +72,44 @@ def handle_non_numerical_data(df):
         def convert_to_int(val):
             return text_digit_vals[val]
 
+        if df[column].dtype != np.int64 and df[column].dtype != np.float64:
+
+            column_contents = df[column].values.tolist()
+            #finding just the uniques
+            unique_elements = set(column_contents)
+            #great, found them
+            x = 0
+            for unique in unique_elements:
+                if unique not in text_digit_vals:
+                    #creating dict that contains new
+                    #id per uniuq string
+                    text_digit_vals[unique] = x
+                    x += 1
+            # now we map the new "id" value
+            # to replace the string
+            df[column] = list(map(convert_to_int, df[column]))
+
+    return df
+
+df = handle_non_numerical_data(df)
+print(df.head())
+
+# add remove features just to see impact they have
+df.drop(['ticket', 'home.dest'], 1, inplace=True)
+
+data = np.array(df.drop(['survived'], 1).astype(float))
+data = preprocessing.scale(data)
+predict_data = np.array(df['survived'])
 
 clf = K_Means()
 clf.fit(data)
 
-for centroid in clf.centroids:
-    plt.scatter(clf.centroids[centroid][0], clf.centroids[centroid][1], marker="o", color="k", s=150, linewidths=5)
+correct = 0
+for i in range(len(data)):
+    predict_me = np.array(data[i].astype(float))
+    predict_me = predict_me.reshape(-1, len(predict_me))
+    prediction = clf.predict(predict_me)
+    if prediction == predict_data[i]:
+        correct += 1
 
-for classification in clf.classifications:
-    color = colors[classification]
-    for featureset in clf.classifications[classification]:
-        plt.scatter(featureset[0], featureset[1], marker="x", color=color, s=150, linewidths=150)
+print(correct/len(data))
