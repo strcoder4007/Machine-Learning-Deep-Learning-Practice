@@ -2,13 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f22092ff-391b-4606-9796-816f216499dd" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/Machine-Learning-Deep-Dive.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Machine-Learning-Deep-Dive.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/kmeans-titanic-clustering.py" beforeDir="false" afterPath="$PROJECT_DIR$/kmeans-titanic-clustering.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/kmeans.py" beforeDir="false" afterPath="$PROJECT_DIR$/kmeans.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

@@ -1,19 +1,17 @@
 import matplotlib.pyplot as plt
 from matplotlib import style
 style.use('ggplot')
+from sklearn import preprocessing, cross_validation
 import numpy as np
+import pandas as pd
 
-data = np.array([[1, 2],
-                 [1.5, 1.8],
-                 [5, 8],
-                 [8, 8],
-                 [1, 0.6],
-                 [9, 11]])
-
-plt.scatter(X[:, 0], X[:, 1], s=100, linewidths=5)
-plt.show()
-
-colors = 10 * ["g", "r", "c", "b", "k"]
+# data = np.array([[1, 2],
+#                  [1.5, 1.8],
+#                  [5, 8],
+#                  [8, 8],
+#                  [1, 0.6],
+#                  [9, 11]])
+# colors = 10 * ["g", "r", "c", "b", "k"]
 
 
 class K_Means:
@@ -40,8 +38,7 @@ class K_Means:
             prev_centroids = dict(self.centroids)
 
             for classification in self.classifications:
-                pass
-            # self.centroids[classification] = np.average(self.classifications[classification], axis = 0)
+                self.centroids[classification] = np.average(self.classifications[classification], axis = 0)
 
             optimized = True
 
@@ -60,13 +57,29 @@ class K_Means:
         return classification
 
 
+df = pd.read_excel('titanic.xls')
+df.drop(['body', 'name'], 1, inplace=True)
+print(df.head())
+df.fillna(0, inplace=True)
+
+def handle_non_numerical_data(df):
+
+    #handling non-numerical data: must convert
+    columns = df.columns.values
+
+    for column in columns:
+        text_digit_vals = {}
+        def convert_to_int(val):
+            return text_digit_vals[val]
+
+
 clf = K_Means()
-clf.fit()
+clf.fit(data)
 
 for centroid in clf.centroids:
-    plt.scatter(clf.centroids[centroid][0], clf.centroids[centroid][1], marker="0", color="k", s=150, linewidth=5)
+    plt.scatter(clf.centroids[centroid][0], clf.centroids[centroid][1], marker="o", color="k", s=150, linewidths=5)
 
 for classification in clf.classifications:
     color = colors[classification]
     for featureset in clf.classifications[classification]:
-        plt.scatter(featureset[0], featureset[1], marker="x", color=color, s=150, linewidth=150)
+        plt.scatter(featureset[0], featureset[1], marker="x", color=color, s=150, linewidths=150)
