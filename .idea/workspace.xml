@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b68118b7-4611-4e99-b365-050f9ef3d8b8" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/deep-net.py" beforeDir="false" afterPath="$PROJECT_DIR$/deep-net.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
