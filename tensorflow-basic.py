@@ -1,4 +1,6 @@
-import tensorflow as tf
+import tensorflow.compat.v1 as tf
+tf.disable_v2_behavior()
+
 
 mnist = tf.keras.datasets.mnist # 28x28 images of handwritten digits 0-9
 
