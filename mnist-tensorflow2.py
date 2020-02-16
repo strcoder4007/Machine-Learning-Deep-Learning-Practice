@@ -13,7 +13,7 @@ for i in range(16):
     plt.yticks([])
     plt.imshow(train_images[i], cmap=plt.cm.binary)
     plt.xlabel(class_names[train_labels[i]])
-plt.show()
+# plt.show()
 
 IMG_SIZE = (28, 28, 1)
 input_img = layers.Input(shape=IMG_SIZE)
@@ -43,8 +43,29 @@ model = models.Model(input_img, output_img)
 
 model.summary()
 
+# I don't understand how they keep manipulating the shape of the tensor,
+# adding dimensions at will.
+# I don't get it.
+train_images = train_images.reshape(60000, 28, 28, 1).astype('float32') / 255.0
+test_images = test_images.reshape(10000, 28, 28, 1).astype('float32') / 255.0
 
+train_labels = tf.keras.utils.to_categorical(train_labels, 10)
+test_labels = tf.keras.utils.to_categorical(test_labels, 10)
 
+adam = optimizers.Adam(lr=0.0001)
+model.compile(adam, loss='categorical_crossentropy', metrics=["accuracy"])
 
+history = model.fit(train_images, train_labels, epochs=3, validation_data=(test_images, test_labels))
 
+plt.plot(history.history['accuracy'], label='accuracy')
+plt.plot(history.history['val_accuracy'], label='val_accuracy')
+plt.xlabel('Epoch')
+plt.ylabel('Accuracy')
+plt.ylim([0.7, 1])
+plt.legend(loc='best')
 
+plt.plot(history.history['loss'], label='loss')
+plt.plot(history.history['val_loss'], label='val_loss')
+plt.xlabel('Epoch')
+plt.ylabel('Loss')
+plt.legend(loc='best')
