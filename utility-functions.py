@@ -4,16 +4,6 @@ import h5py
 
 
 def sigmoid(Z):
-    """
-    Implements the sigmoid activation in numpy
-
-    Arguments:
-    Z -- numpy array of any shape
-
-    Returns:
-    A -- output of sigmoid(z), same shape as Z
-    cache -- returns Z as well, useful during backpropagation
-    """
 
     A = 1/(1+np.exp(-Z))
     cache = Z
@@ -63,16 +53,6 @@ def relu_backward(dA, cache):
     return dZ
 
 def sigmoid_backward(dA, cache):
-    """
-    Implement the backward propagation for a single SIGMOID unit.
-
-    Arguments:
-    dA -- post-activation gradient, of any shape
-    cache -- 'Z' where we store for computing backward propagation efficiently
-
-    Returns:
-    dZ -- Gradient of the cost with respect to Z
-    """
 
     Z = cache
 
