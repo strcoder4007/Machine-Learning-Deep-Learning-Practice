@@ -204,7 +204,7 @@ def model(X, Y, layer_dims, optimizer, learning_rate=0.01, mini_batch_size=64, b
                 parameters = update_parameters_with_momentum(parameters, gradients, v, learning_rate, beta)
             elif optimizer == 'adam':
                 t += 1
-                parameters = update_parameters_with_gd(parameters, gradients, learning_rate, v, s, t, beta1, beta2, epsilon)
+                parameters = update_parameters_with_adam(parameters, gradients, learning_rate, v, s, t, beta1, beta2, epsilon)
 
         cost_avg = cost_total / m
         if i%1000 == 0:
